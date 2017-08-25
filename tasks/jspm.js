@@ -101,12 +101,12 @@ module.exports = function (grunt) {
         }
         const data = self.data;
 
-        const bundle = options.sfx ? "bundleSFX" : "bundle";
+        const bundle = options.sfx ? "buildStatic" : "bundle";
         const buildCommon = Boolean(data.commonBundle);
 
         if (buildCommon) {
             const done = self.async();
-            if (bundle === 'bundleSFX') {
+            if (bundle === 'buildStatic') {
                 grunt.fail.warn('bundleSFX is not supported when creating a common bundle.');
             }
             grunt.log.writeln(grunt.log.wordlist(['Building common bundle...'], {color: 'green'}));
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
             const done = self.async();
             self.files.forEach(file => {
                 const moduleExpression = file.orig.src[0];
-                thenables.push(jspm[bundle](moduleExpression, file.dest, options));
+                thenables.push(builder[bundle](moduleExpression, file.dest, options));
             });
             Promise.all(thenables).then(done, grunt.fail.warn);
         }
