@@ -2,7 +2,7 @@
   "name": "grunt-jspm-builder",
   "version": "0.3.1",
   "dependencies": {
-    "jspm": "^0.16.15"
+    "jspm": "^0.16.15 || ^0.17.0"
   },
   "description": "A Grunt task for bundling based on all jspm production workflows.",
   "devDependencies": {
